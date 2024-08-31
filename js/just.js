@@ -2,18 +2,26 @@
 const loadPhone = async (searchText) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
-    const phones = data.data;
-    displayPhones(phones);
+    return data.data;
+};
+
+// Shuffle array function to randomize order
+const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 };
 
 // Show Phone Data With DOM manipulation
 const displayPhones = phones => {
     const phoneContainer = document.getElementById("phone-container");
+    phoneContainer.textContent = "";
     if (phones.length === 0) {
         document.getElementById("search-input-field").value = "Not Found";
         return;
     }
-    phoneContainer.textContent = "";
     phones.forEach(phone => {
         const phoneCard = document.createElement("div");
         phoneCard.classList = `border-2 w-[352px] md:w-[363px] lg:w-[352px] h-[560px] rounded-md p-4 flex flex-col gap-4`;
@@ -33,11 +41,21 @@ const displayPhones = phones => {
     });
 };
 
-// Search Functionality
-const handleSearch = () => {
-    const searchField = document.getElementById("search-input-field");
-    const searchText = searchField.value;
-    loadPhone(searchText);
+// Load all phones from each brand and shuffle them
+const loadAllPhones = async () => {
+    const brands = ["samsung", "oppo", "iphone", "huawei"];
+    let allPhones = [];
+
+    for (let brand of brands) {
+        const phones = await loadPhone(brand);
+        allPhones = allPhones.concat(phones);
+    }
+
+    // Shuffle the array to randomize the order
+    const shuffledPhones = shuffleArray(allPhones);
+    
+    displayPhones(shuffledPhones);
 };
 
-// loadPhone();
+// Load all phones on page load
+loadAllPhones();
