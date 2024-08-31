@@ -54,11 +54,15 @@
                 <button onclick="handleSearch()" class="btn btn-primary rounded-r-lg text-white px-8 active:bg-[#6a9ae2dc]">Search</button>
             </div>
         </section>
-        <section id="phone-container" class="mx-0 lg:mx-32 mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="relative hidden justify-center">
+            <span class="absolute mt-7 loading loading-spinner text-info w-10"></span>
+        </div>
+        <section id="phone-container" class="relative mx-0 lg:mx-32 mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <!-- This container isn't empty. Element Input throw API with DOM manipulation -->
         </section>
-        <div class="flex justify-center">
-            <button onclick="show_details_modal.showModal()" class="btn btn-primary active:bg-[#6a9ae2dc] rounded-lg text-white px-8 mt-12 lg:mt-14">Show All</button>
+        <div id="show-all-btn" class="justify-center hidden">
+            <button onclick="handleShowAll()" class="btn btn-primary active:bg-[#6a9ae2dc] rounded-lg text-white px-8 mt-12 lg:mt-14">Show All</button>
         </div>
         <!-- MODAL FOR SHOW DETAILS -->
         <dialog id="show_details_modal" class="modal">
