@@ -20,16 +20,16 @@ const displayPhones = (phones, isShowAll) => {
     }
     phoneContainer.textContent = "";
     const showAllBtn = document.getElementById("show-all-btn");
-    if (phones.length > 6 && !isShowAll){
-        showAllBtn.classList.remove("hidden");
-        showAllBtn.classList.add("flex");
-    }
-    else {
-        showAllBtn.classList.add("hidden");
-    };
-    if (!isShowAll){
-        phones = phones.slice(0,6);
-    };
+    // if (phones.length > 6 && !isShowAll){
+    //     showAllBtn.classList.remove("hidden");
+    //     showAllBtn.classList.add("flex");
+    // }
+    // else {
+    //     showAllBtn.classList.add("hidden");
+    // };
+    // if (!isShowAll){
+    //     phones = phones.slice(0,6);
+    // };
     phones.forEach(phone => {
         const phoneCard = document.createElement("div");
         phoneCard.classList = `border-2 w-[352px] md:w-[363px] lg:w-[352px] h-[560px] rounded-md p-4 flex flex-col gap-4`;
@@ -106,9 +106,9 @@ const showPhoneDetails = (inputPhoneDetails) => {
 };
 
 // Show All Functionality
-const handleShowAll = () => {
-    handleSearch(true);
-};
+// const handleShowAll = () => {
+//     handleSearch(true);
+// };
 
 // Loading Spinner Functionality
 const toggleLoadingSpinner = (isLoading) => {
